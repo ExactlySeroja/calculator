@@ -31,7 +31,7 @@ public class MainMenu {
                 Choose action:
                  1 - Add new expression
                  2 - View all expressions
-                  3 - Update DataBase
+                 3 - Update DataBase
                  4 - Search by condition""");
         Scanner scanner = new Scanner(System.in);
         int actionNumber = scanner.nextInt();
@@ -42,7 +42,9 @@ public class MainMenu {
                 String expression = scanner.nextLine();
                 List<Lexeme> lexemes = lexAnalyze(expression);
                 LexBuffer lexBuffer = new LexBuffer(lexemes);
-                service.toDataBase(expression, expr(lexBuffer));
+                int result = expr(lexBuffer);
+                service.toDataBase(expression, result);
+                System.out.println("Result is: " + result);
                 System.out.println("\nExpression successfully added to DataBase");
             }
             case 2 -> service.getExpressions();
@@ -61,7 +63,7 @@ public class MainMenu {
                 } else System.out.println("New expression isn't correct");
             }
             case 4 -> {
-                System.out.println("Choose condition:\n 1 - 'is equals(=)'\n 2- 'more than(>)'\n 3- 'less than(<)'\n" +
+                System.out.println("Choose condition:\n 1 - 'is equals(=)'\n 2- 'more than(>)'\n 3 - 'less than(<)'\n" +
                         " 4 - 'more or equals (>=)'\n 5 - 'less or equals");
                 int conditionType = scanner.nextInt();
                 scanner.nextLine();

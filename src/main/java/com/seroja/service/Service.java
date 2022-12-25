@@ -45,7 +45,7 @@ public class Service {
         ArrayList<String> expressions = new ArrayList<>();
         ResultSet set = executeQuery("select * from expressions");
         while (set.next()){
-            expressions.add(set.getString(2));
+            expressions.add(set.getString(1) + " " + set.getString(2) + " " + set.getString(3));
         }
         expressions.sort(String::compareToIgnoreCase);
         for (String i: expressions
